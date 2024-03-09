@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+// Kevin Frazier
 // A utility function to print an array of size n
 void printArray(int arr[], int n)
 {
@@ -13,7 +13,6 @@ void bubbleSort(int arr[], int n) {
     int swaps[n]; // Array to store the number of swaps for each element
     for (i = 0; i < n; i++)
         swaps[i] = 0; // Initialize swaps array with 0
-
     for (i = 0; i < n - 1; i++) {
         for (j = 0; j < n - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
@@ -23,12 +22,12 @@ void bubbleSort(int arr[], int n) {
                 arr[j + 1] = temp;
 
                 // Increment swap count for swapped elements
-                swaps[j]++;
-                swaps[j + 1]++;
+                temp = swaps[j];
+                swaps[j] = swaps[j + 1] + 1;
+                swaps[j + 1] = temp+1;
             }
         }
     }
-
     int total_swaps = 0;
     for (i = 0; i < n; i++) {
         total_swaps += swaps[i];
@@ -72,13 +71,15 @@ void selectionSort(int arr[], int n)
         arr[min_indx] = temp;
 
         // Increment swap count for swapped elements
-        if (min_indx != i) {
-            swaps[min_indx]++;
-            swaps[i]++;
+        if (min_indx != i)
+        {
+          total_swaps++;
+          temp = swaps[i] + 1;
+          swaps[i] = swaps[min_indx] + 1;
+          swaps[min_indx] = temp;
         }
 
-        // Increment total swap count
-        total_swaps++;
+        
     }
 
     // Print the number of swaps for each element
